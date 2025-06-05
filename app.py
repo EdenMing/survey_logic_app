@@ -59,7 +59,7 @@ uploaded = st.file_uploader("Upload your survey‐structure Excel (.xlsx)", type
 
 if uploaded:
     # ─── 2) Parse Excel into question/answer structure ───────────────────────
-    df = pd.read_excel(uploaded, dtype={"contents": str, "qa_mark": int})
+    df = pd.read_excel(uploaded, dtype={"contents": str, "identifiers": int})
 
     questions = []
     q_counter = 0
@@ -68,7 +68,7 @@ if uploaded:
 
     for _, row in df.iterrows():
         text = str(row["contents"]).strip()
-        mark = int(row["qa_mark"])
+        mark = int(row["identifiers"])
 
         if mark == 1:
             # This is a Question
